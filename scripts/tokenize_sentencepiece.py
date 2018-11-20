@@ -13,6 +13,6 @@ with open(output_file, 'w+') as out_f:
     with open(input_file, 'r', encoding='latin-1') as in_f:
         for l in in_f:
             pieces = sp.EncodeAsPieces(l.strip())
-            print(' '.join(pieces), file=out_f)
+            print(u' '.join(pieces).encode("utf-8"), file=out_f)
 
 

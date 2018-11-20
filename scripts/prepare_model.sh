@@ -38,21 +38,20 @@ mkdir models/
 
 # Build dictionaries
 echo "Building dictionary"
-# python scripts/build_dic.py $CORPUS_FILE $DICT_FILE_PREFIX $LANG
+python scripts/build_dic.py $CORPUS_FILE $DICT_FILE_PREFIX $LANG
 
 # Train bpe
 echo "Building BPE model"
-# python scripts/train_sentencepiece.py --input="$LOWERCASED_CORPUS_FILE" --model_prefix="$SUBWORD_MODEL_PREFIX" --model_type="$SUBWORD_MODEL" --vocab_size="$VOCABULARY_SIZE"
+python scripts/train_sentencepiece.py --input="$LOWERCASED_CORPUS_FILE" --model_prefix="$SUBWORD_MODEL_PREFIX" --model_type="$SUBWORD_MODEL" --vocab_size="$VOCABULARY_SIZE"
 
 # Tokenize
 echo "Tokenizing"
-python3 --version
 python3 scripts/tokenize_sentencepiece.py $SUBWORD_MODEL_FILE $LOWERCASED_CORPUS_FILE $TOKENIZED_CORPUS_FILE
 sed -i '/^\s*$/d' $TOKENIZED_CORPUS_FILE
 
 # Train LM
 echo "Training LM"
-${KENLM_BIN}/lmplz -o 5 -S 4G < $TOKENIZED_CORPUS_FILE > $LM_MODEL_ARPA_FILE
+${KENLM_BIN}/lmplz -o 5 -S 80% < $TOKENIZED_CORPUS_FILE > $LM_MODEL_ARPA_FILE
 
 # Convert to binary file for faster loading
 echo "Building binary lm model file"
