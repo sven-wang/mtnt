@@ -7,13 +7,14 @@
 #SBATCH -o logs/log_wmt_download.txt
 
 # Command line arguments
-CONFIG_FILE=${1:-"config/dat.en.config"}
+CONFIG_FILE=${1:-"config/data.en.config"}
 
 # Load config
 source $CONFIG_FILE
 
 # File name
 CORPUS_FILE="${CORPUS_DIR}/${FILE_ROOT}.${LANG}.txt"
+echo "CORPUS_FILE: $CORPUS_FILE"
 
 # Create corpus dir
 mkdir -p $CORPUS_DIR
