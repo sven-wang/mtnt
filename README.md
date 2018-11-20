@@ -34,7 +34,7 @@ From this folder, run
 ```bash
 # Monolingual en data from WMT17
 bash scripts/download_en.sh config/data.en.config
-bash scripts/prepare_model config/data.en.config
+bash scripts/prepare_model.sh config/data.en.config
 
 # Monolingual fr data from WMT15
 bash scripts/download_fr.sh config/data.fr.config
