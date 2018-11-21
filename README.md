@@ -38,7 +38,7 @@ bash scripts/prepare_model.sh config/data.en.config
 
 # Monolingual fr data from WMT15
 bash scripts/download_fr.sh config/data.fr.config
-bash scripts/prepare_model config/data.fr.config
+bash scripts/prepare_model.sh config/data.fr.config
 
 # Prepare en<->fr parallel data
 bash scripts/prepare-en-fr.sh config/data.fr.config path/to/moses/scripts
